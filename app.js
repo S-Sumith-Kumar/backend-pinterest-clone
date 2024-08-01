@@ -4,10 +4,10 @@ const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");
 const createError = require("http-errors");
 const flash = require("connect-flash");
+const passport = require("passport");
 const express = require("express");
 const logger = require("morgan");
 const path = require("path");
-const passport = require("passport");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
