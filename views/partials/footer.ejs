@@ -1,4 +1,15 @@
 
+    <link rel="stylesheet" href="/stylesheets/footer.css">
     
+    <% if(error.length > 0) { %>
+        <% error.forEach(err => { %>
+          <div class="error-message fixed px-4 py-2 font-semibold bottom-4 left-1/2 -translate-x-1/2 rounded-md  bg-orange-600 text-white"><%= err %></div>
+        <% }); %>
+    <% } %>
+    <% if(success.length > 0) { %>
+        <% error.forEach(suc => { %>
+          <div class="error-message fixed px-4 py-2 font-semibold bottom-4 left-1/2 -translate-x-1/2 rounded-md  bg-orange-600 text-white"><%= suc %></div>
+        <% }); %>
+    <% } %>
 </body>
 </html>

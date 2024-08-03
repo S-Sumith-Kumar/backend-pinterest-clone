@@ -2,8 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #111;
+}
+
 
 html::-webkit-scrollbar {
   display: none;
@@ -19,14 +27,14 @@ body {
   background-color: #f5f5f5;
 }
 
-.container {
+.pins {
   width: 100%;
   margin: auto;
   columns: 6;
   column-gap: 20px;
   padding: 20px;
 }
-.container .window {
+.pins .pin {
   width: 100%;
   margin-bottom: 20px;
   break-inside: avoid;
@@ -36,12 +44,12 @@ body {
   z-index: 9;
   color: #000;
 }
-.container .window img.main {
+.pins .pin img.main {
   width: 100%;
   border-radius: 10px;
 }
 
-.container .window:hover .hover-zone {
+.pins .pin:hover .hover-zone {
   display: flex;
   overflow: hidden;
 }
@@ -79,14 +87,12 @@ body {
   font-size: 18px;
   border-radius: 40px;
   cursor: pointer;
-  background: red;
 }
 .hover-zone .bottom-bar {
   padding: 10px 10px;
   width: 100%;
   border-radius: 20px;
   display: flex;
-  justify-content: end;
   align-items: center;
 }
 .hover-zone .bottom-bar a {
@@ -111,23 +117,20 @@ body {
 .hover-zone .bottom-bar img:hover {
   background: white;
 }
-.hover-zone .bottom-bar .radius-ico {
-  /* display: flex; */
-}
 
 @media (max-width: 1427px) {
-  .container {
+  .pins {
     columns: 5;
   }
 }
 @media (max-width: 1200px) {
-  .container {
+  .pins {
     columns: 4;
   }
 }
 
 @media (max-width: 1000px) {
-  .container {
+  .pins {
     columns: 3;
   }
 
@@ -137,13 +140,13 @@ body {
 }
 
 @media (max-width: 786px) {
-  .container {
+  .pins {
     columns: 2;
   }
 }
 
 @media (max-width: 480px) {
-  .container {
+  .pins {
     columns: 1;
   }
 }

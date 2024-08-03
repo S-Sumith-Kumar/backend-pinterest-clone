@@ -15,12 +15,33 @@ router.get("/", isLoggedIn, function (req, res, next) {
   res.redirect("/feed");
 });
 
-/* GET Profile Page. */
+/* GET Feed Page. */
 router.get("/feed", isLoggedIn, function (req, res) {
   let error = req.flash("error") || [];
   let success = req.flash("success") || [];
-  res.render("feed",{ error, success, title: "Feed" } );
+  res.render("feed", { error, success, title: "Feed" });
 });
+
+/* GET Profile Page. */
+router.get(
+  "/profile",
+  // isLoggedIn,
+  function (req, res) {
+    let error = req.flash("error") || [];
+    let success = req.flash("success") || [];
+    let info = {
+      error,
+      success,
+      title: "Profile",
+      profilePic: "default.jpeg",
+      fullName: "Hay!",
+      username: "Hay_Me_Profile",
+      bio: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus, animi!",
+      tagline: ["tags", " tags", " tags"]
+    };
+    res.render("profile", info);
+  }
+);
 
 /* GET Login Page. */
 router.get("/account/login", function (req, res) {
