@@ -29,8 +29,8 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now, // Automatically sets the current date and time
   },
-  profilePicture: { type: Buffer },
-  bio: { type: String, default: "Hay!" },
+  profilePic: { type: String, default: "default.jpeg" },
+  bio: { type: String, default: "Hello To My World" },
 });
 
 userSchema.plugin(passportLocalMongoose);

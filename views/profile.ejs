@@ -13,54 +13,103 @@
   </head>
   <body>
     <div
-      class="Container relative gap-4 w-full min-h-screen flex items-start justify-center flex-col bg-zinc-300 p-8"
+      class="Container relative gap-4 w-full min-h-screen flex items-start justify-start flex-col bg-zinc-300 p-8"
     >
+      <% if(error.length > 0) { %> <% error.forEach(err => { %>
       <div
-        class="card w-full py-8 px-6 bg-white rounded-lg flex items-start justify-start flex-col rounded-tr-3xl"
+        class="message fixed px-4 py-2 font-semibold top-4 left-1/2 -translate-x-1/2 rounded-md bg-orange-600 text-white z-50"
       >
-        <div class="profilePicture w-24 h-24 rounded-full relative">
-          <img
-            class="w-full h-full object-cover object-center rounded-full"
-            src="/images/<%= profilePic %>"
-            alt="profilePic"
-          />
-          <a
-            href=""
-            class="absolute duration-300 cursor-pointer hover:w-7 hover:h-7 hover:top-[-2px] hover:right-[-2px] top-0 right-0 bg-cyan-600 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:text-sm"
-            ><i class="ri-pencil-fill text-white"></i
-          ></a>
+        <%= err %>
+      </div>
+      <% }); %> <% } %> <% if(success.length > 0) { %> <% success.forEach(suc =>
+      { %>
+      <div
+        class="message fixed px-4 py-2 font-semibold top-4 left-1/2 -translate-x-1/2 rounded-md bg-cyan-500 text-white z-50"
+      >
+        <%= suc %>
+      </div>
+      <% }); %> <% } %>
+      <div
+        class="card w-full relative py-8 bg-white rounded-lg flex items-start justify-between"
+      >
+        <div class="left relative px-6 h-full w-1/2">
+          <div class="profilePicture w-24 h-24 rounded-full relative">
+            <img
+              class="w-full h-full object-cover object-center rounded-full"
+              src="/images/<%= profilePic %>"
+              alt="profilePic"
+            />
+            <a
+              href=""
+              class="absolute duration-300 cursor-pointer hover:w-7 hover:h-7 hover:top-[-2px] hover:right-[-2px] top-0 right-0 bg-cyan-600 rounded-full w-6 h-6 flex items-center justify-center text-xs hover:text-sm"
+              ><i class="ri-pencil-fill text-white"></i
+            ></a>
+          </div>
+          <div class="fullName pt-3 text-xl font-semibold select-none">
+            <h4><%= fullName %></h4>
+          </div>
+          <div class="username cursor-pointer">
+            <a href="" class="text-sm font-medium text-blue-500 hover:underline"
+              >@<%= username %></a
+            >
+          </div>
+          <div class="bio text-xs pt-1 select-none">
+            <p><%= bio %></p>
+          </div>
         </div>
-        <div class="fullName pt-3 text-xl font-semibold select-none">
-          <h4><%= fullName %></h4>
-        </div>
-        <div class="username cursor-pointer">
-          <a href="" class="text-sm font-medium text-blue-500 hover:underline"
-            >@<%= username %></a
+        <div class="right relative px-6 h-full w-1/2">
+          <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+            class="flex flex-col gap-4 items-start"
           >
+            <input
+              class="cursor-pointer"
+              type="file"
+              name="image"
+              accept="image/*"
+              required
+            />
+            <input
+              class="border-2 border-blue-300 px-4 py-2 w-full rounded-md"
+              type="text"
+              name="caption"
+              placeholder="Caption"
+              required
+            />
+            <input
+              class="w-full cursor-pointer px-4 py-2 text-white bg-cyan-600 rounded-md font-semibold"
+              type="submit"
+            />
+          </form>
         </div>
-        <% if(tagline) { %>
-        <div class="tagline text-sm pt-1 select-none">
-          <p><%= tagline %></p>
-        </div>
-        <% } %>
-        <div class="bio text-xs pt-1 select-none">
-          <p><%= bio %></p>
-        </div>
+        <a href="/logout">
+          <div
+            class="settings translate-x-1/2 -translate-y-1/2 top-0 right-1/2 text-lg text-orange-700 w-10 h-10 absolute rounded-full bg-transparent border border-orange-700 flex items-center justify-center"
+          >
+            <i class="ri-logout-circle-line"></i>
+          </div>
+        </a>
       </div>
+      <% if (Posts.length > 0) { %>
       <div class="pins">
-        <div class="pin">
+        <% Posts.forEach((post)=>{ %>
+        <div class="pin bg-[#ffffff50]">
           <img
             class="main"
-            src="https://images.unsplash.com/photo-1721232595017-22332c467a0e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0OXx8fGVufDB8fHx8fA%3D%3D"
+            src="/images/uploads/<%= post.imageUrl %>"
             alt="image"
           />
-          <div class="hover-zone">
+          <div class="hover-zone cursor-default">
             <div class="top-bar">
-              <a class="bg-zinc-500 text-white">edit</a>
+              <a href="" class="bg-zinc-500 text-white">edit</a>
             </div>
             <div class="bottom-bar justify-between">
-              <div class="cardTitle py-[6px] px-[14px] pt-[6px] rounded-full bg-white text-black font-bold text-sm">
-                All Designs
+              <div
+                class="cardTitle max-w-[70%] text-nowrap overflow-hidden text-ellipsis py-[6px] px-[14px] pt-[6px] rounded-full bg-white text-black font-bold text-sm"
+              >
+                <%= post.caption %>
               </div>
               <div class="radius-ico">
                 <img
@@ -75,68 +124,16 @@
             </div>
           </div>
         </div>
-        <div class="pin">
-          <img
-            class="main"
-            src="https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGxhbmRzY2FwZXxlbnwwfHwwfHx8MA%3D%3D"
-            alt="image"
-          />
-          <div class="hover-zone">
-            <div class="top-bar">
-              <a class="bg-zinc-500 text-white">edit</a>
-            </div>
-            <div class="bottom-bar justify-between">
-              <div class="cardTitle py-[6px] px-[14px] pt-[6px] rounded-full bg-white text-black font-bold text-sm">
-                All Designs
-              </div>
-              <div class="radius-ico">
-                <img
-                  class="ico"
-                  src="https://cdn3.iconfinder.com/data/icons/iconset-1-1/24/icon_set_outlinder-10-256.png"
-                />
-                <img
-                  class="ico"
-                  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-more-256.png"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pin">
-          <img
-            class="main"
-            src="https://images.unsplash.com/photo-1719937206589-d13b6b008196?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMXx8fGVufDB8fHx8fA%3D%3D"
-            alt="image"
-          />
-          <div class="hover-zone">
-            <div class="top-bar">
-              <a class="bg-zinc-500 text-white">edit</a>
-            </div>
-            <div class="bottom-bar justify-between">
-              <div class="cardTitle py-[6px] px-[14px] pt-[6px] rounded-full bg-white text-black font-bold text-sm">
-                All Designs
-              </div>
-              <div class="radius-ico">
-                <img
-                  class="ico"
-                  src="https://cdn3.iconfinder.com/data/icons/iconset-1-1/24/icon_set_outlinder-10-256.png"
-                />
-                <img
-                  class="ico"
-                  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-more-256.png"
-                />
-              </div>
-            </div>
-          </div>
+        <% }) %>
+      </div>
+      <% } else { %>
+      <div class="pins columns-1">
+        <div class="text-center py-8 w-full">
+          No pins yet. Upload some images to create your profile and start
+          exploring!
         </div>
       </div>
-      <a href="">
-        <div
-          class="settings top-8 right-8 text-lg text-white w-10 h-10 absolute rounded-full bg-zinc-700 flex items-center justify-center"
-        >
-          <i class="ri-settings-fill"></i>
-        </div>
-      </a>
+      <% } %>
     </div>
   </body>
 </html>

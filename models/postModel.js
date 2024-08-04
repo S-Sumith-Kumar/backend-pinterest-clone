@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-  createdAt: {
-    type: Date,
-    default: Date.now, // Automatically sets the current date and time
+  caption: {
+    type: String,
+    required: true,
   },
-  postText: {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", // Reference to the User who posted
+    required: true,
+  },
+  imageUrl: {
     type: String,
     required: true,
   },
@@ -13,11 +18,12 @@ const postSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", // Reference to the User model
+      default: [], // Array to store the user IDs who have liked the post
     },
   ],
-  postedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the User who posted
+  createdAt: {
+    type: Date,
+    default: Date.now, // Automatically sets the current date and time
   },
 });
 

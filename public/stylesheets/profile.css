@@ -12,7 +12,6 @@ body {
   background-color: #111;
 }
 
-
 html::-webkit-scrollbar {
   display: none;
 }
@@ -27,16 +26,25 @@ body {
   background-color: #f5f5f5;
 }
 
+.card .left::before{
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #aaa;
+}
+
 .pins {
   width: 100%;
-  margin: auto;
   columns: 6;
-  column-gap: 20px;
-  padding: 20px;
+  column-gap: 1rem;
 }
+
 .pins .pin {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   break-inside: avoid;
   border-radius: 15px;
   overflow: hidden;
@@ -148,5 +156,24 @@ body {
 @media (max-width: 480px) {
   .pins {
     columns: 1;
+  }
+}
+
+.message {
+  animation: message 6s forwards;
+}
+
+@keyframes message {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  95% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    display: none;
   }
 }
