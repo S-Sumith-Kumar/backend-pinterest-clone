@@ -1,0 +1,24 @@
+<%- include('./partials/header') %>
+
+    <div class="w-full h-screen bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1517196084897-498e0abd7c2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D')] flex items-center justify-center">
+      <div class="card min-h-[60vh] flex gap-2 items-center justify-start flex-col w-96 rounded-3xl bg-zinc-100 px-10 py-6">
+        <img class="block w-10 h-10 rounded-full object-cover" src="https://s.pinimg.com/webapp/logo_transparent_144x144-3da7a67b.png" alt="User Avatar">
+        <h2 class="select-none text-2xl mb-2 font-semibold text-zinc-800">Welcome to Pinterest</h2>
+        <form class="flex w-full items-start justify-start flex-col" action="/login" method="post">
+          <label class="select-none" for="emailBlock">Username</label>
+          <input class=" mb-2 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="text" name="username" placeholder="Username" required autocomplete="off" id="emailBlock">
+
+          <label class="select-none" for="passwordBlock">Password</label>
+          <input class=" mb-2 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="password" name="password" placeholder="Password" required autocomplete="off" id="passwordBlock">
+
+          <a class="inline-block hover:underline font-medium mb-2 text-zinc-900" href="#">Forgot password?</a>
+
+          <input class="block font-semibold capitalize text-lg rounded-full w-full cursor-pointer bg-[#E60023] text-white px-4 py-2" type="submit" value="Login">
+        </form>
+  
+        <p class="text-center mt-2 px-1 text-xs text-zinc-400">By continuing, you agree to Pinterest's <a class="text-zinc-600 font-medium hover:underline" href="">Terms of Service</a> and acknowledge you've read our <a class="text-zinc-600 font-medium hover:underline" href="">Privacy Policy</a>. <a class="text-zinc-600 font-medium hover:underline" href="">Notice at collection</a>.</p>
+        <a class="text-xs text-center font-semibold hover:underline" href="/register">Not on Pinterest yet? Sign up</a>
+      </div>
+    </div>
+
+<%- include('./partials/footer') %>

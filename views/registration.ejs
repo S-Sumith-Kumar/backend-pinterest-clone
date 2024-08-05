@@ -1,0 +1,41 @@
+<%- include('./partials/header') %>
+
+  <div class="w-full h-screen bg-center bg-cover bg-[url('https://images.unsplash.com/photo-1517196084897-498e0abd7c2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D')] flex items-center justify-center">
+
+    <div class="card min-h-[60vh] flex gap-1 items-center justify-start flex-col w-96 rounded-3xl bg-zinc-100 px-10 py-6">
+
+      <img class="block w-12 h-12 rounded-full object-cover" src="https://s.pinimg.com/webapp/logo_transparent_144x144-3da7a67b.png" alt="User Avatar">
+
+      <h2 class="select-none text-center text-2xl font-semibold text-zinc-900">Unlimited free access to the world's best ideas</h2>
+
+      <h5 class="select-none text-lg mb-2 font-normal text-zinc-900">Sign up to see more</h5>
+
+      <form class="flex w-full items-start justify-start flex-col" action="/login" method="post">
+
+        <label class="select-none" for="fullNameBlock">Full Name</label>
+        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="text" name="fullName" placeholder="Full Name" required autocomplete="off" id="fullNameBlock">
+
+        <label class="select-none" for="userBlock">Username</label>
+        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="text" name="username" placeholder="Username" required autocomplete="off" id="userBlock">
+
+        <label class="select-none" for="contactBlock">Contact</label>
+        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="number" name="contact" minlength="10" maxlength="12" placeholder="Contact" autocomplete="off" id="contactBlock">
+
+        <label class="select-none" for="emailBlock">Email</label>
+        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="email" name="email" placeholder="Email" required autocomplete="off" id="emailBlock">
+
+        <label class="select-none" for="passwordBlock">Password</label>
+        <input class=" mb-4 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="password" name="password" placeholder="Password" required autocomplete="off" id="passwordBlock">
+      
+        <input class="block font-semibold capitalize text-lg rounded-full w-full cursor-pointer bg-[#E60023] text-white px-4 py-2" type="submit" value="Sign Up">
+
+      </form>
+
+      <p class="text-center mt-4 px-1 text-xs text-zinc-400">By continuing, you agree to Pinterest's <a class="text-zinc-600 font-medium hover:underline" href="">Terms of Service</a> and acknowledge you've read our <a class="text-zinc-600 font-medium hover:underline" href="">Privacy Policy</a>. <a class="text-zinc-600 font-medium hover:underline" href="">Notice at collection</a>.</p>
+      <a class="text-xs text-center font-semibold hover:underline" href="/login">Already a member? Log in</a>
+
+    </div>
+    
+  </div>
+
+<%- include('./partials/footer') %>
