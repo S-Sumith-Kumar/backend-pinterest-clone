@@ -10,16 +10,13 @@
 
       <h5 class="select-none text-lg mb-2 font-normal text-zinc-900">Sign up to see more</h5>
 
-      <form class="flex w-full items-start justify-start flex-col" action="/login" method="post">
-
-        <label class="select-none" for="fullNameBlock">Full Name</label>
-        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="text" name="fullName" placeholder="Full Name" required autocomplete="off" id="fullNameBlock">
+      <form class="flex w-full items-start justify-start flex-col" action="/register" method="post">
 
         <label class="select-none" for="userBlock">Username</label>
         <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="text" name="username" placeholder="Username" required autocomplete="off" id="userBlock">
 
         <label class="select-none" for="contactBlock">Contact</label>
-        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="number" name="contact" minlength="10" maxlength="12" placeholder="Contact" autocomplete="off" id="contactBlock">
+        <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="number" name="contact" minlength="10" maxlength="12" required placeholder="Contact" autocomplete="off" id="contactBlock">
 
         <label class="select-none" for="emailBlock">Email</label>
         <input class=" mb-1 block w-full px-4 py-2 border-2 border-zinc-300 rounded-xl" type="email" name="email" placeholder="Email" required autocomplete="off" id="emailBlock">

@@ -9,7 +9,7 @@ mongoose
     dbgr("connected");
   })
   .catch(function (err) {
-    dbgr(err);
+    dbgr(err.message);
   });
 
 module.exports = mongoose.connection;
