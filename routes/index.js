@@ -4,24 +4,33 @@ const express = require("express");
 const router = express.Router();
 
 const Handler = require("../controllers/authController");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 /* Get Routes */
 
 /* Index Page */
-router.get("/", function (req, res) {
-  res.redirect("/login");
+router.get("/", isLoggedIn,function (req, res) {
+  res.redirect("/profile");
 });
 
 /* Login Page */
 router.get("/login", function (req, res) {
   const error = req.flash("error");
   const success = req.flash("success");
-  res.render("login", { title: "Login", error, success });
+  res.render("login", { title: "Login", Handler: true, error, success });
 });
 
 /* register Page */
 router.get("/register", function (req, res) {
-  res.render("signup", { title: "Registration" });
+  const error = req.flash("error");
+  const success = req.flash("success");
+  res.render("signup", { title: "Registration", Handler: true, error, success });
+});
+
+/* Profile Page */
+router.get("/profile", isLoggedIn, function(req, res) {
+  const user = req.user;
+  res.render("profile", { title: "Profile", Handler: false, user, imgNo: 3 });
 });
 
 /* Post Route */
@@ -35,8 +44,5 @@ router.post("/login", Handler.Login);
 /* Logout Route */
 router.get("/logout", Handler.Logout);
 
-router.get("/backups", function(req, res) {
-  res.send("Backup Page");
-});
-
+/* exporting router */
 module.exports = router;

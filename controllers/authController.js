@@ -29,7 +29,7 @@ const Register = async function (req, res) {
         return res.redirect("/register");
       }
 
-      res.redirect("/backups"); // FIXME:
+      res.redirect("/profile");
     });
   } catch (err) {
     debug("Registration error:", err);
@@ -77,7 +77,7 @@ const Login = async function (req, res, next) {
         req.flash("error", err.message || "Login error. Please try again.");
         return res.redirect("/login");
       }
-      return res.redirect("/backups"); // FIXME:
+      return res.redirect("/profile");
     });
   })(req, res, next);
 };
@@ -91,7 +91,7 @@ const Logout = function (req, res, next) {
     }
 
     req.flash("success", "Logged Out Successfully!");
-    res.redirect("/backups"); // FIXME:
+    res.redirect("/login");
   });
 };
 

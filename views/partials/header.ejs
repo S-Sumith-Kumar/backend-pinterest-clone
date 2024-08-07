@@ -9,18 +9,19 @@
   <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
 <body>
-  
-  <% if(error.length > 0) { %>
-    <% error.forEach((err)=>{ %>
-      <div class="massage px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-orange-600 text-white text-base rounded-md">
-        <%= err %>
-      </div>
-    <% }) %>
-  <% } %>
-  <% if(success.length > 0) { %>
-    <% success.forEach((suc)=>{ %>
-      <div class="massage px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-orange-600 text-white text-base rounded-md">
-        <%= suc %>
-      </div>
-    <% }) %>
+  <% if(Handler) { %>
+    <% if(error.length > 0) { %>
+      <% error.forEach((err)=>{ %>
+        <div class="massage pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-orange-600 text-white text-base rounded-md massage-108">
+          <%= err %>
+        </div>
+      <% }) %>
+    <% } %>
+    <% if(success.length > 0) { %>
+      <% success.forEach((suc)=>{ %>
+        <div class="massage pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-cyan-600 text-white text-base rounded-md massage-108">
+          <%= suc %>
+        </div>
+      <% }) %>
+    <% } %>
   <% } %>

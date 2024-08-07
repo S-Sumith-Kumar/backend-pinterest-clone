@@ -20,3 +20,22 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.massage-108{
+  animation: massage-108 6s forwards;
+}
+
+@keyframes massage-108 {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  95% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
