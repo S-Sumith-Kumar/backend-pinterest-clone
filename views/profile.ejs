@@ -1,81 +1,137 @@
 <%- include('./partials/header') %>
+<%- include('./partials/navbar', { page: "profile" }) %>
+
+<% var username = user.username.split(" ").join("_"); %>
 
 <div
-  class="profile w-full flex flex-col justify-center pb-10 pt-1 px-4 min-h-screen bg-zinc-900 text-white"
+  class="profile w-full flex flex-col justify-center pb-10 px-4 min-h-screen bg-zinc-900 text-white"
 >
+  <form id="ipd-form-1573" hidden action="/fileupload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" required />
+  </form>
+
   <div class="profileDetails mt-4 flex items-center flex-col">
-    <div class="w-32 h-32 m-4 rounded-full">
+    <div class="w-32 h-32 m-4 rounded-full relative">
+      <span
+        id="ipd-edit-1573"
+        class="cursor-pointer absolute bottom-0 right-0 w-8 h-8 flex items-center justify-center rounded-full bg-zinc-300 text-zinc-950"
+      >
+        <i class="ri-pencil-fill"></i>
+      </span>
       <img
         class="block w-full h-full object-cover object-center rounded-full"
-        src="https://i.pinimg.com/280x280_RS/d9/d1/ed/d9d1ed15096036830ca32f636b2bfe74.jpg"
+        src="/images/uploads/<%= user.profileImage %>"
         alt="User Avatar"
       />
     </div>
     <div class="flex flex-col items-center gap-y-1">
-      <h2 class="text-xl text-center font-semibold">Lorem, ipsum dolor</h2>
-      <h3 class="text-sm">@Lorem_ipsum_color</h3>
+      <h2 class="text-xl text-center font-semibold"><%= user.username %></h2>
+      <h3 class="text-sm">@<%= username %></h3>
       <p class="text-xs w-2/3 text-center font-normal text-gray-300">
         <!-- User's Bio -->
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam tempora
-        labore sunt voluptates autem minus dolores atque sit obcaecati veniam.
+        <%= user.bio %>
       </p>
-      <a
-        href="/edit/"
-        class="mt-4 capitalize text-xs font-semibold px-6 py-2 bg-zinc-600 rounded-full"
-      >
-        Edit
-      </a>
+      <div class="btns mt-4 flex gap-4 items-center justify-center">
+        <a
+          href="/edit/"
+          class="capitalize text-xs font-semibold px-7 py-2 bg-zinc-600 rounded-full"
+        >
+          Edit Profile
+        </a>
+        <a
+          href="/add"
+          class="px-10 py-2 text-xs font-semibold rounded-lg bg-red-700 text-white"
+        >
+          Create New Post
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="cards mt-10 flex flex-wrap gap-x-8 gap-y-6">
-    <% for(let i = 0; i < 1; i++) { %>
-        <div class="card flex flex-col items-center justify-center relative rounded-xl overflow-hidden">
-            <div
-                class="overlayBox pointer-events-none bg-zinc-50 opacity-5 absolute w-full h-1/2 rounded-b-xl -z-0 bottom-0 left-0"
-            ></div>
-        
-            <a href="">
-                <div class="flex overflow-hidden box w-52 h-40 bg-zinc-700 rounded-xl relative">
-                  <!-- FIXME: -->
-                  <% if(imgNo === 1) { %>
-                    <div class="left w-full h-full">
-                        <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg" alt="Car Image">
-                    </div>
-                  <% } else if(imgNo === 2) { %>
-                    <div class="left w-1/2 h-full">
-                        <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg" alt="Car Image">
-                    </div>
-                    <div class="right w-1/2 h-full">
-                        <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg" alt="Car Image">
-                    </div>
-                  <% } else { %>
-                    <div class="left w-1/2 h-full">
-                        <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg" alt="Car Image">
-                    </div>
-                    <div class="right w-1/2 h-full">
-                        <div class="top w-full h-1/2">
-                            <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/5c/b9/04/5cb9048f80b13be05bd382874f2e5a93.jpg" alt="Car Image">
-                        </div>
-                        <div class="bottom w-full h-1/2">
-                            <img class="w-full h-full object-cover object-center" src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg" alt="Car Image">
-                        </div>
-                    </div>
-                  <% } %>
-                  <!-- FIXME: -->
-                </div>
-            </a>
-        
-            <div class="heading flex flex-col w-full justify-between px-4 py-2 relative">
+    <% for(let i = 0; i < 9; i++) { %>
+    <div
+      class="card flex flex-col items-center justify-center relative rounded-xl overflow-hidden"
+    >
+      <div
+        class="overlayBox pointer-events-none bg-zinc-50 opacity-5 absolute w-full h-1/2 rounded-b-xl -z-0 bottom-0 left-0"
+      ></div>
 
-                <h3 class="text-lg text-start text-white font-semibold w-1/2">Card Title</h3>
-        
-                <h5 class="text-base text-start text-white font-normal opacity-80 w-1/2">28 Pins</h5>
-
+      <a href="">
+        <div
+          class="flex overflow-hidden box w-52 h-40 bg-zinc-700 rounded-xl relative"
+        >
+          <!-- FIXME: -->
+          <% if(imgNo === 1) { %>
+          <div class="left w-full h-full">
+            <img
+              class="w-full h-full object-cover object-center"
+              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
+              alt="Car Image"
+            />
+          </div>
+          <% } else if(imgNo === 2) { %>
+          <div class="left w-1/2 h-full">
+            <img
+              class="w-full h-full object-cover object-center"
+              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
+              alt="Car Image"
+            />
+          </div>
+          <div class="right w-1/2 h-full">
+            <img
+              class="w-full h-full object-cover object-center"
+              src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg"
+              alt="Car Image"
+            />
+          </div>
+          <% } else { %>
+          <div class="left w-1/2 h-full">
+            <img
+              class="w-full h-full object-cover object-center"
+              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
+              alt="Car Image"
+            />
+          </div>
+          <div class="right w-1/2 h-full">
+            <div class="top w-full h-1/2">
+              <img
+                class="w-full h-full object-cover object-center"
+                src="https://i.pinimg.com/236x/5c/b9/04/5cb9048f80b13be05bd382874f2e5a93.jpg"
+                alt="Car Image"
+              />
             </div>
+            <div class="bottom w-full h-1/2">
+              <img
+                class="w-full h-full object-cover object-center"
+                src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg"
+                alt="Car Image"
+              />
+            </div>
+          </div>
+          <% } %>
+          <!-- FIXME: -->
         </div>
+      </a>
+
+      <div
+        class="heading flex flex-col w-full justify-between px-4 py-2 relative"
+      >
+        <h3 class="text-lg text-start text-white font-semibold w-1/2">
+          Card Title
+        </h3>
+
+        <h5
+          class="text-base text-start text-white font-normal opacity-80 w-1/2"
+        >
+          28 Pins
+        </h5>
+      </div>
+    </div>
     <% } %>
   </div>
 </div>
+
+<script src="/javascripts/profile.js"></script>
 
 <%- include('./partials/footer') %>

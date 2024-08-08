@@ -7,19 +7,20 @@
   <link rel="shortcut icon" href="https://s.pinimg.com/webapp/favicon_48x48-7470a30d.png" type="image/x-icon">
   <script src='https://cdn.tailwindcss.com'></script>
   <link rel="stylesheet" href="/stylesheets/styles.css">
+  <link href='https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css' rel='stylesheet'/>
 </head>
 <body>
   <% if(Handler) { %>
     <% if(error.length > 0) { %>
       <% error.forEach((err)=>{ %>
-        <div class="massage pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-orange-600 text-white text-base rounded-md massage-108">
+        <div class="massage z-50 pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-orange-600 text-white text-base rounded-md massage-108">
           <%= err %>
         </div>
       <% }) %>
     <% } %>
     <% if(success.length > 0) { %>
       <% success.forEach((suc)=>{ %>
-        <div class="massage pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-cyan-600 text-white text-base rounded-md massage-108">
+        <div class="massage z-50 pointer-events-none px-4 py-2 fixed top-4 -translate-x-1/2 left-1/2 bg-cyan-600 text-white text-base rounded-md massage-108">
           <%= suc %>
         </div>
       <% }) %>

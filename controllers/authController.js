@@ -1,5 +1,6 @@
 const debug = require("debug")("development:auth");
 const UserModel = require("../models/UserModel");
+
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -95,4 +96,23 @@ const Logout = function (req, res, next) {
   });
 };
 
-module.exports = { Register, Login, Logout };
+const FileUpload = async function (req, res) {
+  try {
+    const fileName = req.file.filename;
+    const User = await UserModel.findOne({
+      username: req.user,
+    });
+    User.profileImage = fileName;
+    await User.save();
+    req.flash("success", "Profile picture updated successfully!");
+    res.redirect("/profile");
+  } catch (err) {
+    debug("Error while uploading file: \n" + err.message);
+    req.flash("error", "Error while uploading file. Please try again.");
+    res.redirect("/profile");
+  }
+};
+
+module.exports = { Register, Login, Logout, FileUpload };
+
+/* req.user ?== req.session.passport.user */

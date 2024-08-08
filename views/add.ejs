@@ -1,0 +1,55 @@
+<%- include('./partials/header') %> <%- include('./partials/navbar', { page:
+"add" }) %>
+
+<div class="w-full h-screen bg-zinc-800 py-1 text-white">
+  <h2
+    class="border-b-2 border-zinc-600 py-4 px-8 text-3xl font-semibold capitalize"
+  >
+    Create a new post
+  </h2>
+  <form
+    class="flex flex-col mt-6 px-8 items-start gap-4"
+    action="/createpins"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input
+      class=""
+      type="file"
+      name="postfile"
+      accept="image/*"
+      required
+    />
+    <input
+      class="px-4 py-2 w-96 bg-zinc-600 border-zinc-900 rounded-sm"
+      type="text"
+      name="title"
+      placeholder="Enter title"
+      required
+    />
+    <style>
+      #textarea-1987::-webkit-scrollbar {
+        display: none;
+      }
+
+      #textarea-1987 {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <textarea
+      id="textarea-1987"
+      class="overflow-y-auto resize-none h-32 bg-zinc-600 w-96 px-4 py-2 border-zinc-900 rounded-sm"
+      type="text"
+      name="description"
+      placeholder="Enter description"
+    ></textarea>
+    <input
+      class="cursor-pointer px-4 py-2 rounded-md font-bold text-red-700 bg-white"
+      type="submit"
+      value="Upload"
+    />
+  </form>
+</div>
+
+<%- include('./partials/footer') %>

@@ -8,12 +8,12 @@ const UserSchema = Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String },
-  profileImage: { type: String },
+  profileImage: { type: String, default: "default.jpeg" },
   contact: { type: Number, default: null },
   bio: { type: String, default: null },
   joined: { type: Date, default: Date.now },
   pins: [{ type: ObjectId, ref: "Pin" }],
-  boards: [{ type: ObjectId, ref: "Board" }],
+  // boards: [{ type: ObjectId, ref: "Board" }],
   /* --------------------------------------------- */
   /*             This for future versions          */
   /* website: { type: String, default: null },     */
