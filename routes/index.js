@@ -37,25 +37,50 @@ router.get("/register", function (req, res) {
 });
 
 /* Profile Page */
-router.get("/profile", isLoggedIn, function (req, res) {
-  const UserAndPin = UserModel.findOne({ username: req.session.passport.user }).populate('pins');
-  const user = req.user;
-  const error = req.flash("error");
-  const success = req.flash("success");
-  res.render("profile", {
-    title: "Profile",
-    error,
-    success,
-    Handler: true,
-    user,
-    UserAndPin,
-    imgNo: 1,
-  });
+router.get("/profile", isLoggedIn, async function (req, res) {
+  try {
+    const user = await UserModel.findOne({
+      username: req.session.passport.user,
+    }).populate("pins");
+
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("/login");
+    }
+
+    const error = req.flash("error");
+    const success = req.flash("success");
+
+    res.render("profile", {
+      title: "Profile",
+      error,
+      success,
+      Handler: true,
+      user,
+      imgNo: 1,
+    });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "An error occurred while fetching your profile.");
+    res.redirect("/login");
+  }
 });
 
 router.get("/add", isLoggedIn, function (req, res) {
-  const user = req.user;
   res.render("add", { title: "Add Pin", Handler: false });
+});
+
+router.get("/show/pins", isLoggedIn, async function (req, res) {
+  const user = await UserModel.findOne({
+    username: req.session.passport.user,
+  }).populate("pins");
+
+  if (!user) {
+    req.flash("error", "User not found");
+    return res.redirect("/login");
+  }
+
+  res.render("showpins", { title: "Pins", user, Handler: false });
 });
 
 /* Post Route */

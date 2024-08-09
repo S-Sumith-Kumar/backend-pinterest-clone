@@ -1,10 +1,10 @@
 <%- include('./partials/header') %>
 <%- include('./partials/navbar', { page: "profile" }) %>
 
-<% var username = user.username.split(" ").join("_"); %>
+<% var username = user.username.split(" ").join("_").toLowerCase() %>
 
 <div
-  class="profile w-full flex flex-col justify-center pb-10 px-4 min-h-screen bg-zinc-900 text-white"
+  class="profile w-full flex flex-col justify-start pb-10 px-4 min-h-screen bg-zinc-900 text-white"
 >
   <form id="ipd-form-1573" hidden action="/fileupload" method="post" enctype="multipart/form-data">
     <input type="file" name="file" accept="image/*" required />
@@ -42,93 +42,61 @@
           href="/add"
           class="px-10 py-2 text-xs font-semibold rounded-lg bg-red-700 text-white"
         >
-          Create New Post
+          Create New Pin
         </a>
       </div>
     </div>
   </div>
 
   <div class="cards mt-10 flex flex-wrap gap-x-8 gap-y-6">
-    <% for(let i = 0; i < 9; i++) { %>
-    <div
+    
+    <% if (user.pins.length > 0) { %>
+      <div
       class="card flex flex-col items-center justify-center relative rounded-xl overflow-hidden"
-    >
-      <div
-        class="overlayBox pointer-events-none bg-zinc-50 opacity-5 absolute w-full h-1/2 rounded-b-xl -z-0 bottom-0 left-0"
-      ></div>
-
-      <a href="">
-        <div
-          class="flex overflow-hidden box w-52 h-40 bg-zinc-700 rounded-xl relative"
-        >
-          <!-- FIXME: -->
-          <% if(imgNo === 1) { %>
-          <div class="left w-full h-full">
-            <img
-              class="w-full h-full object-cover object-center"
-              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
-              alt="Car Image"
-            />
-          </div>
-          <% } else if(imgNo === 2) { %>
-          <div class="left w-1/2 h-full">
-            <img
-              class="w-full h-full object-cover object-center"
-              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
-              alt="Car Image"
-            />
-          </div>
-          <div class="right w-1/2 h-full">
-            <img
-              class="w-full h-full object-cover object-center"
-              src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg"
-              alt="Car Image"
-            />
-          </div>
-          <% } else { %>
-          <div class="left w-1/2 h-full">
-            <img
-              class="w-full h-full object-cover object-center"
-              src="https://i.pinimg.com/236x/23/0b/68/230b68ca5e0a46de229cfbaf67d8a489.jpg"
-              alt="Car Image"
-            />
-          </div>
-          <div class="right w-1/2 h-full">
-            <div class="top w-full h-1/2">
-              <img
-                class="w-full h-full object-cover object-center"
-                src="https://i.pinimg.com/236x/5c/b9/04/5cb9048f80b13be05bd382874f2e5a93.jpg"
-                alt="Car Image"
-              />
-            </div>
-            <div class="bottom w-full h-1/2">
-              <img
-                class="w-full h-full object-cover object-center"
-                src="https://i.pinimg.com/236x/c2/86/cb/c286cb51237539545fc2b0bb8e161a74.jpg"
-                alt="Car Image"
-              />
-            </div>
-          </div>
-          <% } %>
-          <!-- FIXME: -->
-        </div>
-      </a>
-
-      <div
-        class="heading flex flex-col w-full justify-between px-4 py-2 relative"
       >
-        <h3 class="text-lg text-start text-white font-semibold w-1/2">
-          Card Title
-        </h3>
+        <div
+          class="overlayBox pointer-events-none bg-zinc-50 opacity-5 absolute w-full h-1/2 rounded-b-xl -z-0 bottom-0 left-0"
+        ></div>
 
-        <h5
-          class="text-base text-start text-white font-normal opacity-80 w-1/2"
+        <a href="/show/pins">
+          <div
+            class="flex overflow-hidden box w-52 bg-zinc-700 rounded-xl relative"
+          >
+            <div class="left w-full h-full">
+              <img
+                class="w-full h-full object-cover object-center"
+                src="/images/uploads/<%= user.pins[0].imageUrl %>"
+                alt="<%= user.pins[0].title %> - Image"
+              />
+            </div>
+          </div>
+        </a>
+
+        <div
+          class="heading flex flex-col w-full justify-between px-4 py-2 relative"
         >
-          28 Pins
-        </h5>
+          <h3 class="text-lg text-ellipsis text-nowrap text-start text-white font-semibold w-1/2">
+            Your Uploaded Pins
+          </h3>
+
+          <h5
+            class="text-base text-start text-white font-normal opacity-80 w-1/2"
+          >
+            <%= user.pins.length %> Pins
+          </h5>
+        </div>
       </div>
-    </div>
+    <% } else { %>
+      <div class="w-full flex items-center gap-2 flex-col justify-center h-10">
+        <span class="inline-block text-zinc-600">
+          You don't have any pins uploaded.
+        </span>
+        <span class="inline-block text-zinc-600">
+          Than let's make a new pin. click Create New Pin.
+        </span>
+      </div>
     <% } %>
+    
   </div>
 </div>
 

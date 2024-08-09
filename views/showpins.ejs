@@ -1,0 +1,59 @@
+<%- include('./partials/header') %>
+<%- include('./partials/navbar', { page: "add" }) %>
+
+<% var titleData = "Image Title" %>
+<% var descriptionData = "Image Description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio reprehenderit aliquam quia autem laudantium accusantium repellat saepe fugiat doloremque iste facilis sint, voluptatum harum, quae qui, temporibus sed ex aut modi ipsam? Sequi, blanditiis. Ad iure quam autem eveniet veniam nisi corrupti optio sunt tenetur? Et harum reiciendis sit delectus possimus soluta eaque iure temporibus earum voluptas dicta distinctio eum ratione expedita similique voluptatum aliquid, sint, sunt, odio dolorum consequatur. Excepturi animi earum asperiores, consequatur magnam numquam libero dolores deleniti tenetur odit consequuntur! Incidunt optio, error id quo, porro eos, corporis temporibus modi explicabo laboriosam doloremque quod exercitationem maxime nostrum?" %>
+
+<% if(titleData.length > 29) { %>
+    <% var title = titleData.substring(0, 29) %>
+    <% title += "..." %>
+<% } else { var title = titleData } %>
+
+<% if(descriptionData.length > 117) { %>
+    <% var description = descriptionData.substring(0, 117) %>
+    <% description += "..." %>
+<% } else { var description = descriptionData } %>
+
+<style>
+  .masonry {
+    column-count: 6; /* Default for desktop */
+    column-gap: 16px; /* Gap between columns */
+  }
+</style>
+
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<div class="frame w-full min-h-screen bg-zinc-900 p-8">
+  <div class="cards masonry items-start">
+    
+    <div class="card pin inline-block w-full mb-4 rounded-lg bg-[#ffffff80]">
+      <div class="image w-full overflow-hidden rounded-lg">
+        <img
+          class="w-full object-cover object-center"
+          src="https://picsum.photos/<%= i % 2 ? 200 : 500 %>/<%= i % 3 ? 500 : 300  %>?random=<%= i %>"
+          alt="Image"
+        />
+      </div>
+      <div class="p-4 text-ellipsis">
+        <h5 class="text-sm text-white"><%= title %></h5>
+        <p class="text-xs max-h-16 text-zinc-200"><%= description %></p>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var grid = document.querySelector(".grid");
+    var masonry = new Masonry(grid, {
+      itemSelector: ".pin",
+      columnWidth: ".pin",
+      gutter: 16, // Space between items
+      fitWidth: true,
+    });
+  });
+</script>
+
+<%- include('./partials/footer') %>
+<!-- https://picsum.photos/200/300?random=1 -->

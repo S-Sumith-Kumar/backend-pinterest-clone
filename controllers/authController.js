@@ -100,7 +100,7 @@ const FileUpload = async function (req, res) {
   try {
     const fileName = req.file.filename;
     const User = await UserModel.findOne({
-      username: req.user,
+      username: req.session.passport.user,
     });
     User.profileImage = fileName;
     await User.save();
