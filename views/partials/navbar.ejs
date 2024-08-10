@@ -9,5 +9,13 @@
         <div class="flex items-center justify-center gap-4">
             <a class="text-sm capitalize font-semibold duration-300 text-black bg-zinc-200 hover:bg-zinc-300 px-4 py-2 rounded-lg" href="/profile">profile</a>
         </div>
+    <% } else if (page === "feed") { %>
+        <div class="flex items-center justify-center">
+            <a href="/profile">
+                <div class="image w-8 h-8 rounded-full overflow-hidden">
+                    <img src="/images/uploads/<%= user.profileImage %>" alt="Profile Image">
+                </div>
+            </a>
+        </div>
     <% } %>
 </div>

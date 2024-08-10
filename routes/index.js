@@ -66,10 +66,12 @@ router.get("/profile", isLoggedIn, async function (req, res) {
   }
 });
 
+/* Add pin Page */
 router.get("/add", isLoggedIn, function (req, res) {
   res.render("add", { title: "Add Pin", Handler: false });
 });
 
+/* showing pins Page */
 router.get("/show/pins", isLoggedIn, async function (req, res) {
   const user = await UserModel.findOne({
     username: req.session.passport.user,
@@ -81,6 +83,37 @@ router.get("/show/pins", isLoggedIn, async function (req, res) {
   }
 
   res.render("showpins", { title: "Pins", user, Handler: false });
+});
+
+router.get("/feed", isLoggedIn, async function (req, res) {
+  try {
+    const user = await UserModel.findOne({
+      username: req.session.passport.user,
+    });
+
+    const pins = await PinModel.find({});
+
+    if (!user) {
+      req.flash("error", "User not found");
+      return res.redirect("/login");
+    }
+
+    const error = req.flash("error");
+    const success = req.flash("success");
+
+    res.render("feed", {
+      title: "Feed",
+      error,
+      success,
+      Handler: true,
+      user,
+      pins
+    });
+  } catch (err) {
+    console.error(err);
+    req.flash("error", "An error occurred while fetching your profile.");
+    res.redirect("/login");
+  }
 });
 
 /* Post Route */

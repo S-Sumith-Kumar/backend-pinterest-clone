@@ -1,5 +1,5 @@
 <%- include('./partials/header') %>
-<%- include('./partials/navbar', { page: "add" }) %>
+<%- include('./partials/navbar', { page: "feed" }) %>
 
 <style>
   .masonry {
@@ -10,7 +10,7 @@
 
 <div class="frame w-full min-h-screen bg-zinc-900 p-8">
   <div class="cards flex flex-wrap items-start gap-4">
-    <% user.pins.forEach((pin)=>{ %>
+    <% pins.forEach((pin)=>{ %>
         <div class="card pin inline-block w-64 mb-4 rounded-lg bg-[#ffffff80]">
           <div class="image w-full overflow-hidden rounded-lg">
             <img
@@ -26,4 +26,3 @@
 </div>
 
 <%- include('./partials/footer') %>
-<!-- https://picsum.photos/200/300?random=1 -->
